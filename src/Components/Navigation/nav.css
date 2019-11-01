@@ -1,14 +1,12 @@
-body{
+
+.nav{
     display: flex;
     justify-content: flex-end;
     padding-right: 30px;
     text-decoration: underline;
-}
-
-nav{
     cursor: pointer;
 }
 
-nav:hover{
+.nav:hover{
     opacity: .8;
 }

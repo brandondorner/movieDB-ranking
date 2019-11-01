@@ -1,0 +1,24 @@
+.logo-box{
+    display: flex;
+    justify-content: flex-start;
+    margin: 0 5vw;
+}
+
+.Tilt{
+    box-shadow: 4px 4px 8px 4px rgba(0,0,0,0.2);
+    background: -webkit-gradient(linear, left top, right top, from(#2b6ad9), to(#63be94));
+    background: linear-gradient(to right, #2b6ad9, #63be94);
+}
+
+.Tilt-inner{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.logo-img{
+    max-height: 75%;
+    max-width: 75%;
+}
