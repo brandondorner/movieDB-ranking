@@ -1,6 +1,7 @@
 import React from 'react';
 import Navigation from "./Components/Navigation/Navigation";
 import Logo from "./Components/Logo/Logo"
+import Query from "./Components/Query/Query"
 import './css/app.css';
 
 function App() {
@@ -8,6 +9,8 @@ function App() {
     <div className="app">
       <Navigation />
       <Logo />
+      <Query />
+      {/* <QueryResults /> */}
     </div>
   );
 }
