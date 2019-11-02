@@ -27,7 +27,7 @@ const Query = () => {
                     <input type="number" name="year1" value="1972" placeholder="1972"/>
                     <label>to year</label>
                     <input type="number" name="year2" value="1996" placeholder="1996"/>
-                    <button type="submit">Submit</button>
+                    <button type="submit">Search</button>
                 </form>
             </div>
         </div>
