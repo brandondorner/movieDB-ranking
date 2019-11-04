@@ -1,5 +1,6 @@
 import React from 'react';
 import Navigation from "./Components/Navigation/Navigation";
+import SignIn from "./Components/SignIn/SignIn";
 import Logo from "./Components/Logo/Logo"
 import Query from "./Components/Query/Query"
 import MovieResults from "./Components/MovieResults/MovieResults"
@@ -26,6 +27,7 @@ function App() {
         params ={particlesParams}
       />
       <Navigation />
+      <SignIn />
       <Logo />
       <Query />
       <MovieResults />
