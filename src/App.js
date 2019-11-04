@@ -20,19 +20,37 @@ const particlesParams = {
   }
 }
 
-function App() {
-  return (
-    <div className="app">
-      <Particles className='particles'
-        params ={particlesParams}
-      />
-      <Navigation />
-      <SignIn />
-      <Logo />
-      <Query />
-      <MovieResults />
-    </div>
-  );
+
+
+class App extends React.Component {
+  constructor(){
+    super()
+    this.state = {
+      route: 'signin'
+    }
+  }
+
+  render(){
+    return (
+      <div className="app">
+        <Particles className='particles'
+          params ={particlesParams}
+        />
+        <Navigation />
+        {/* setting up conditional of being signed in */}
+        {/* if route is sign in, then render signin. if not, render everything else */}
+        { this.state.route === "signin"
+        ? <SignIn />
+        : <div>
+            <Logo />
+            <Query />
+            <MovieResults />
+          </div>
+        }
+      </div>
+    );
+  }
+ 
 }
 
 export default App;
