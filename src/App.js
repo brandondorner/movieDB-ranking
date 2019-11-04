@@ -30,17 +30,25 @@ class App extends React.Component {
     }
   }
 
+  //this function when ran will change the route state
+  onRouteChange = (newRoute) => {
+    this.setState({route : newRoute});
+  }
+
+
   render(){
     return (
       <div className="app">
         <Particles className='particles'
           params ={particlesParams}
         />
-        <Navigation />
+        <Navigation onRouteChange={this.onRouteChange} />
+
         {/* setting up conditional of being signed in */}
         {/* if route is sign in, then render signin. if not, render everything else */}
+        {/* SignIn passes down prop onRouteChange */}
         { this.state.route === "signin"
-        ? <SignIn />
+        ? <SignIn onRouteChange={this.onRouteChange}/>
         : <div>
             <Logo />
             <Query />
