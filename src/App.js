@@ -28,7 +28,7 @@ class App extends React.Component {
     super()
     this.state = {
       route: 'signin',
-      isSignedIn: 'false'
+      isSignedIn: false
     }
   }
 
@@ -47,6 +47,7 @@ class App extends React.Component {
 
 
   render(){
+    //could destructure to remove this.state here
     
     //     setting up conditional of being signed in 
     //     if route is sign in, then render signin. same for home, other, etc
