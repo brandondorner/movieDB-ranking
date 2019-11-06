@@ -1,3 +1,4 @@
+const bcrypt = require('bcryptjs');
 const express = require('express');
 
 const app = express();
@@ -26,12 +27,21 @@ const database = {
     ]
 }
 
+//function for comparing passwords
+const comparePasswords = async (password, hash) => {
+    return await bcrypt.compare(password, hash)
+}
+
 
 app.get('/', (req, res) => {
     res.json('index')
 })
 
 app.post('/signin', (req, res) => {
+
+    
+
+
     //if req email and password match a user in our database then send them the site
     if (req.body.email === database.users[0].email &&
         req.body.password === database.users[0].password){
@@ -42,14 +52,20 @@ app.post('/signin', (req, res) => {
     }
 })
 
-app.post('/register', (req, res) => {
+app.post('/register', async (req, res) => {
     //destructuring
     const { email, name, password } = req.body
+
+    //password hashing
+    //async await 
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt)
+
     database.users.push({
         id: '125',
         name : name,
         email : email,
-        password: password,
+        password: hashedPassword,
         entries: 0,
         joined : new Date()
     })
