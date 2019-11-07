@@ -1,10 +1,13 @@
 const bcrypt = require('bcryptjs');
 const express = require('express');
+const cors = require('cors')
 
 const app = express();
 //parsing in json
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+//using cors
+app.use(cors())
 
 const database = {
     users: [
@@ -34,7 +37,7 @@ const comparePasswords = async (password, hash) => {
 
 
 app.get('/', (req, res) => {
-    res.json('index')
+    res.json(database.users)
 })
 
 app.post('/signin', (req, res) => {
