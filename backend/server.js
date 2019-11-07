@@ -41,11 +41,8 @@ app.get('/', (req, res) => {
 })
 
 app.post('/signin', (req, res) => {
-
-    
-
-
     //if req email and password match a user in our database then send them the site
+    //if they do not match, send an error
     if (req.body.email === database.users[0].email &&
         req.body.password === database.users[0].password){
 
