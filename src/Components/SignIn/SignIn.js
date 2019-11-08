@@ -35,15 +35,20 @@ class SignIn extends React.Component {
         //if message is success (email and password match),
         //change the route to 'home'
         .then(response => response.json())
-        .then(data => {
-            if (data === "success"){
+        // .then(data => {
+        //     if (data === "success"){
+        //         this.props.onRouteChange('home')
+        //     }
+        // })
+        .then(response => response.json())
+        .then(user => {
+            if (user.id){
                 this.props.onRouteChange('home')
             }
         })
     }
 
     render(){
-
         const { onRouteChange } = this.props;
      return(
         <article className="br3 ba b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">

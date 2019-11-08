@@ -28,10 +28,25 @@ class App extends React.Component {
     super()
     this.state = {
       route: 'signin',
-      isSignedIn: false
+      isSignedIn: false,
+      user:{
+        id: "",
+        name: '',
+        email: '',
+        joined: ''
+      }
     }
   }
 
+  //when registering user automatically load user
+  loadUser = (data) => {
+    this.setState({user: {
+      id: data.id,
+      name: data.name,
+      email: data.email,
+      joined: data.joined
+    }})
+  }
 
   //this function when ran will change the route state
   onRouteChange = (newRoute) => {
@@ -83,7 +98,9 @@ class App extends React.Component {
         <div className="app">
           <Particles className='particles'
             params ={particlesParams}/>
-          <Register onRouteChange={this.onRouteChange} />
+          <Register 
+            onRouteChange={this.onRouteChange}
+            loadUser = {this.loadUser} />
         </div>
       )
     }

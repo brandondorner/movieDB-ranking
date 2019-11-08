@@ -16,7 +16,6 @@ const database = {
             name : 'john',
             email : 'john@mail',
             password: 'cookies',
-            entries: 0,
             joined : new Date()
         },
         {
@@ -24,7 +23,6 @@ const database = {
             name : 'sakky',
             email : 'sally@mail',
             password: 'icecream',
-            entries: 0,
             joined : new Date()
         }
     ]
@@ -46,7 +44,8 @@ app.post('/signin', (req, res) => {
     if (req.body.email === database.users[0].email &&
         req.body.password === database.users[0].password){
 
-        res.json('success')
+        // res.json('success')
+        res.json(database.users[0])
     }else{
         res.status(400). json('error logging in')
     }
@@ -66,7 +65,6 @@ app.post('/register', async (req, res) => {
         name : name,
         email : email,
         password: hashedPassword,
-        entries: 0,
         joined : new Date()
     })
     res.json(database.users[database.users.length - 1])
