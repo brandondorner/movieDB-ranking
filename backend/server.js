@@ -1,6 +1,26 @@
 const bcrypt = require('bcryptjs');
 const express = require('express');
 const cors = require('cors')
+const knex = require('knex');
+
+//connect to database
+const db = knex({
+    client: 'pg',
+    connection: {
+      host : '127.0.0.1',
+      user : 'postgres',
+      //add in password
+      password : '*****',
+      database : 'movie'
+    }
+  });
+
+// SELECT * FROM users;
+db.select('*').from('users')
+  //grab data, then console log it
+  .then(data => {
+      console.log(data)
+  })
 
 const app = express();
 //parsing in json
@@ -51,6 +71,7 @@ app.post('/signin', (req, res) => {
     }
 })
 
+//whenever someone registers
 app.post('/register', async (req, res) => {
     //destructuring
     const { email, name, password } = req.body
@@ -60,14 +81,19 @@ app.post('/register', async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt)
 
-    database.users.push({
-        id: '125',
-        name : name,
-        email : email,
-        password: hashedPassword,
-        joined : new Date()
+    //insert register data into users table and returns all of new user data
+    db('users')
+        .returning('*')
+        .insert({
+            email: email,
+            name: name
     })
-    res.json(database.users[database.users.length - 1])
+    .then(user => {
+        //returns user instead of user within an array
+        res.json(user[0])
+    })
+    //if err (email isn't unique, return err)
+    .catch(err => res.status(400).json('Unable to register. Email may already be regsitered.'))
 })
 
 
