@@ -81,16 +81,33 @@ app.post('/register', async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt)
 
-    //insert register data into users table and returns all of new user data
-    db('users')
-        .returning('*')
-        .insert({
-            email: email,
-            name: name
-    })
-    .then(user => {
-        //returns user instead of user within an array
-        res.json(user[0])
+    //adding info to login and users tables in database
+    //transaction makes it where if one part fails then nothing is added to the db
+    db.transaction(trx => {
+        //INSERT INTO login (hash, email) VALUES hashedPassword, email;
+        trx.insert({
+            hash: hashedPassword,
+            email: email
+        })
+        .into('login')
+        //returns email then passes it down as loginEmail
+        .returning('email')
+        .then(loginEmail =>{
+            //insert register data into users table and returns all of new user data
+            return trx('users')
+            .returning('*')
+            .insert({
+                email: loginEmail[0],
+                name: name
+            })
+            .then(user => {
+                //returns user instead of user within an array
+                res.json(user[0])
+            })
+        })
+        //commit and check for error
+        .then(trx.commit)
+        .catch(trx.rollback)
     })
     //if err (email isn't unique, return err)
     .catch(err => res.status(400).json('Unable to register. Email may already be regsitered.'))
