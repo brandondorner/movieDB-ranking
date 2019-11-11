@@ -10,7 +10,7 @@ const db = knex({
       host : '127.0.0.1',
       user : 'postgres',
       //add in password
-      password : '*****',
+      password : '****',
       database : 'movie'
     }
   });
@@ -59,16 +59,28 @@ app.get('/', (req, res) => {
 })
 
 app.post('/signin', (req, res) => {
-    //if req email and password match a user in our database then send them the site
-    //if they do not match, send an error
-    if (req.body.email === database.users[0].email &&
-        req.body.password === database.users[0].password){
-
-        // res.json('success')
-        res.json(database.users[0])
-    }else{
-        res.status(400). json('error logging in')
-    }
+    //SELECT email, hash FROM login
+    //WHERE email = {req.body.email} 
+   db.select('email', 'hash').from('login')
+    .where('email', '=', req.body.email)
+    .then(data => {
+        //check if passwords match
+        const isValid = bcrypt.compareSync(req.body.password, data[0].hash);
+        //if passwors match then do this
+        if (isValid){
+            //return the user
+            return db.select('*').from('users')
+                .where('email', '=', req.body.email)
+                .then(user => {
+                    console.log(user)
+                    res.json(user[0])
+                })
+                .catch(err => res.status(400).json('unable to get user'))
+        }else{
+            res.status(400).json('wrong crednetials')
+        }
+    })
+    .catch(err => res.status(400).json('wrong credentials'))
 })
 
 //whenever someone registers
