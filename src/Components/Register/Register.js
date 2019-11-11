@@ -39,7 +39,8 @@ class Register extends React.Component{
         })
         .then(response => response.json())
         .then(user => {
-            if (user){
+            //if user exists
+            if (user.id){
                 //when registering, automatically login to user and change route to home
                 this.props.loadUser(user)
                 this.props.onRouteChange('home')

@@ -29,38 +29,13 @@ app.use(express.json());
 //using cors
 app.use(cors())
 
-const database = {
-    users: [
-        {
-            id: '123',
-            name : 'john',
-            email : 'john@mail',
-            password: 'cookies',
-            joined : new Date()
-        },
-        {
-            id: '124',
-            name : 'sakky',
-            email : 'sally@mail',
-            password: 'icecream',
-            joined : new Date()
-        }
-    ]
-}
-
-//function for comparing passwords
-const comparePasswords = async (password, hash) => {
-    return await bcrypt.compare(password, hash)
-}
-
-
 app.get('/', (req, res) => {
     res.json(database.users)
 })
 
 app.post('/signin', (req, res) => {
     //SELECT email, hash FROM login
-    //WHERE email = {req.body.email} 
+    //WHERE email = ${req.body.email} 
    db.select('email', 'hash').from('login')
     .where('email', '=', req.body.email)
     .then(data => {
@@ -77,7 +52,7 @@ app.post('/signin', (req, res) => {
                 })
                 .catch(err => res.status(400).json('unable to get user'))
         }else{
-            res.status(400).json('wrong crednetials')
+            res.status(400).json('wrong credentials')
         }
     })
     .catch(err => res.status(400).json('wrong credentials'))
@@ -87,6 +62,10 @@ app.post('/signin', (req, res) => {
 app.post('/register', async (req, res) => {
     //destructuring
     const { email, name, password } = req.body
+    //if register credentials are blank then return error
+    if (!email || !name || !password){
+        return res.status(400).json('incorrect form submission')
+    }
 
     //password hashing
     //async await 

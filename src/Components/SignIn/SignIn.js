@@ -31,15 +31,9 @@ class SignIn extends React.Component {
                 password: this.state.signInPassword
             })
         })
-        //after data if received, check to see if data matches the response message
-        //if message is success (email and password match),
+        //after data is sent/receieved, respond with data
+        //if response has a user with an id, AKA login was succesful and the user was responded,
         //change the route to 'home'
-        .then(response => response.json())
-        // .then(data => {
-        //     if (data === "success"){
-        //         this.props.onRouteChange('home')
-        //     }
-        // })
         .then(response => response.json())
         .then(user => {
             if (user.id){
