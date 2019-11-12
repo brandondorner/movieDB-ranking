@@ -3,6 +3,9 @@ const express = require('express');
 const cors = require('cors')
 const knex = require('knex');
 
+const PORT = process.env.PORT || 3000
+
+
 //connect to database
 const db = knex({
     client: 'pg',
@@ -34,18 +37,24 @@ app.get('/', (req, res) => {
 })
 
 app.post('/signin', (req, res) => {
+    const { email, password } = req.body
+    //if register credentials are blank then return error
+    if (!email || !password){
+        return res.status(400).json('incorrect form submission')
+    }
+
     //SELECT email, hash FROM login
     //WHERE email = ${req.body.email} 
    db.select('email', 'hash').from('login')
-    .where('email', '=', req.body.email)
+    .where('email', '=', email)
     .then(data => {
         //check if passwords match
-        const isValid = bcrypt.compareSync(req.body.password, data[0].hash);
+        const isValid = bcrypt.compareSync(password, data[0].hash);
         //if passwors match then do this
         if (isValid){
             //return the user
             return db.select('*').from('users')
-                .where('email', '=', req.body.email)
+                .where('email', '=', email)
                 .then(user => {
                     console.log(user)
                     res.json(user[0])
@@ -106,8 +115,8 @@ app.post('/register', async (req, res) => {
 
 
 
-app.listen(3000, () => {
-    console.log('app running on port 3000')
+app.listen(PORT, () => {
+    console.log(`app running on port ${PORT}`)
 })
 
 
