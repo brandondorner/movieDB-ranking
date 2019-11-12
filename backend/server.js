@@ -18,7 +18,6 @@ const db = knex({
     }
   });
 
-// SELECT * FROM users;
 db.select('*').from('users')
   //grab data, then console log it
   .then(data => {
@@ -33,7 +32,9 @@ app.use(express.json());
 app.use(cors())
 
 app.get('/', (req, res) => {
-    res.json(database.users)
+    // SELECT * FROM moviedata LIMIT(10);
+    db.select('*').from('moviedata').limit(10)
+    .then(data => res.json(data))
 })
 
 app.post('/signin', (req, res) => {
