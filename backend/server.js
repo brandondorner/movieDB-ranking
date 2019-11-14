@@ -13,16 +13,11 @@ const db = knex({
       host : '127.0.0.1',
       user : 'postgres',
       //add in password
-      password : '***',
+      password : '****',
       database : 'movie'
     }
   });
 
-db.select('*').from('users')
-  //grab data, then console log it
-  .then(data => {
-      console.log(data)
-  })
 
 const app = express();
 //parsing in json
@@ -57,7 +52,7 @@ app.post('/signin', (req, res) => {
             return db.select('*').from('users')
                 .where('email', '=', email)
                 .then(user => {
-                    console.log(user)
+                    // console.log(user)
                     res.json(user[0])
                 })
                 .catch(err => res.status(400).json('unable to get user'))
@@ -67,6 +62,8 @@ app.post('/signin', (req, res) => {
     })
     .catch(err => res.status(400).json('wrong credentials'))
 })
+
+
 
 //whenever someone registers
 app.post('/register', async (req, res) => {
@@ -115,18 +112,15 @@ app.post('/register', async (req, res) => {
 })
 
 
+app.post('/query', (req, res) => {
+    res.json(req.body)
+    // db.select('*').from('moviedata').limit(10)
+    // .then(data => res.json(data))
+})
+
+
 
 app.listen(PORT, () => {
     console.log(`app running on port ${PORT}`)
 })
 
-
-/*
-/ --> res = this is working
-/signin --> POST = sucess/fail
-/register --> POST = user
-/profile/:userId --> GET = user
-/movies --> GET = results
-
-
-*/

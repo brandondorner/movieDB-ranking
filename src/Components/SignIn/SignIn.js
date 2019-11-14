@@ -77,7 +77,7 @@ class SignIn extends React.Component {
                     <input  
                         //onclick of sign in, run onRouteChange and passing param of 'home'
                         //added anonymous arrow function so that onRouteChange only runs after onClick
-                        onClick= {this.onSubmitSignIn}
+                        onClick= {this.onSubmitSignIn} 
                         className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib" 
                         type="submit" 
                         value="Sign in"/>

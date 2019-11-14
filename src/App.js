@@ -76,7 +76,7 @@ class App extends React.Component {
           <Navigation onRouteChange={this.onRouteChange} />
           <div>
             <Logo />
-            <Query />
+            <Query onRouteChange={this.onRouteChange}  />
             <MovieResults />
           </div>
         </div>
