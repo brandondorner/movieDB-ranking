@@ -3,8 +3,8 @@ import './css/MovieResults.css'
 
 class MovieResults extends React.Component{
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
           data: []
         };
@@ -18,13 +18,7 @@ class MovieResults extends React.Component{
               this.setState({ data: data })});
       }
 
-      QuerySubmit(){
-          fetch('http://localhost:3000/query')
-          .then(response => response.json())
-          .then(data => {
-              console.log(data)
-          })
-      }
+      
 
     render(){
     return(

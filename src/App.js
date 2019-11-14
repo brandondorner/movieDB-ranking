@@ -3,8 +3,8 @@ import Navigation from "./Components/Navigation/Navigation";
 import SignIn from "./Components/SignIn/SignIn";
 import Register from './Components/Register/Register'
 import Logo from "./Components/Logo/Logo"
-import Query from "./Components/Query/Query"
-import MovieResults from "./Components/MovieResults/MovieResults"
+
+import QueryAndResultsParent from './Components/QueryAndResultsParent/QueryAndResultsParent'
 import './css/app.css';
 import Particles from 'react-particles-js';
 
@@ -76,8 +76,9 @@ class App extends React.Component {
           <Navigation onRouteChange={this.onRouteChange} />
           <div>
             <Logo />
-            <Query onRouteChange={this.onRouteChange}  />
-            <MovieResults />
+            <QueryAndResultsParent />
+            {/* <Query onRouteChange={this.onRouteChange}  />
+            <MovieResults /> */}
           </div>
         </div>
       )

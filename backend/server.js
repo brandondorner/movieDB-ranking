@@ -116,6 +116,8 @@ app.post('/query', (req, res) => {
     res.json(req.body)
     // db.select('*').from('moviedata').limit(10)
     // .then(data => res.json(data))
+
+    //send back db.select req.body etc etc through data res.json(data)
 })
 
 
