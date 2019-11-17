@@ -28,6 +28,10 @@ class Query extends React.Component {
                         <option value="movie_year">Year</option>
                         <option value='rating'>Rating</option>
                     </select>
+                    <select name="order" onChange = {event => this.props.onInputChange(event.target.value, event.target.name)}>
+                        <option value="asc">Ascending</option>
+                        <option value='desc'>Descending</option>
+                    </select>
                     <label> Limit results to:</label>
                     <input 
                         type="number" 
@@ -40,14 +44,14 @@ class Query extends React.Component {
                         type="number" 
                         name="yearStart" 
                         value={this.props.yearStart}
-                        placeholder="1970"
+                        placeholder="1900"
                         onChange = {event => this.props.onInputChange(event.target.value, event.target.name)} />
                     <label>to year</label>
                     <input 
                         type="number"  
                         name="yearEnd" 
                         value= {this.props.yearEnd}
-                        placeholder="1980"
+                        placeholder="2018"
                         onChange = {event => this.props.onInputChange(event.target.value, event.target.name)} />
                     <button onClick={this.props.onSubmitQuery}>Search</button>
                 </form>

@@ -14,6 +14,11 @@ class MovieResults extends React.Component{
     render(){
     return(
         <div> 
+
+            
+            {/* if no results then have some kind of no results text */}
+
+
             <table className="movie-table">
                 <tbody>
                     <tr>

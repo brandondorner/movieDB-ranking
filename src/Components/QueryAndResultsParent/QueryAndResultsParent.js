@@ -8,14 +8,15 @@ class QueryAndResultsParent extends React.Component{
         this.state = {
             queryResults:[],
             title: 'Titanic',
-            yearStart: '1970',
-            yearEnd: '1980',
+            yearStart: '1900',
+            yearEnd: '2020',
             sortBy: 'title',
+            order: 'asc',
             limit:'10'
         }
     }
 
-          //grabbing data
+          //grabbing initial table data
           componentDidMount() {
             fetch('http://localhost:3000/')
               .then(response => response.json())
@@ -42,6 +43,7 @@ class QueryAndResultsParent extends React.Component{
                yearStart: this.state.yearStart,
                yearEnd: this.state.yearEnd,
                sortBy: this.state.sortBy,
+               order: this.state.order,
                limit: this.state.limit
             })
         })

@@ -13,7 +13,7 @@ const db = knex({
       host : '127.0.0.1',
       user : 'postgres',
       //add in password
-      password : '***',
+      password : '****',
       database : 'movie'
     }
   });
@@ -115,8 +115,14 @@ app.post('/register', async (req, res) => {
 app.post('/query', (req, res) => {
     // db.select('*').from('moviedata').limit(10)
     // .then(data => res.json(data))
+    const { yearStart, yearEnd, sortBy, order, limit } = req.body
+    const title = req.body.title.toUpperCase()
 
-    db.select('*').from('moviedata').limit(15)
+    db.select('*').from('moviedata')
+    .where('movie_year', '>', yearStart).andWhere('movie_year', '<', yearEnd)
+    .andWhere("title", "like", `%${title}%`)
+    .limit(limit)
+    .orderBy(sortBy, order)
     .then(data => res.json(data))
     //send back db.select req.body etc etc through data res.json(data)
 })
