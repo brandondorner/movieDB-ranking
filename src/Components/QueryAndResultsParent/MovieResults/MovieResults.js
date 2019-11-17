@@ -6,23 +6,14 @@ class MovieResults extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-          data: []
+          queryResults: this.props.queryResults,
         };
       }
-
-      //grabbing data
-      componentDidMount() {
-        fetch('http://localhost:3000/')
-          .then(response => response.json())
-          .then(data => {
-              this.setState({ data: data })});
-      }
-
-      
+     
 
     render(){
     return(
-        <div>            
+        <div> 
             <table className="movie-table">
                 <tbody>
                     <tr>
@@ -31,7 +22,7 @@ class MovieResults extends React.Component{
                         <th>Year</th>
                         <th>Rating</th>
                     </tr>
-                    {this.state.data.map(movie => {
+                    {this.props.queryResults.map(movie => {
                         return(
                         <tr>
                             <td data-th='Movie Title'>{movie.title}</td>

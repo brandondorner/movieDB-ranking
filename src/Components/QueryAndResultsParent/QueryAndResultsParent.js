@@ -6,7 +6,7 @@ class QueryAndResultsParent extends React.Component{
     constructor(props){
         super(props)
         this.state = {
-            data: [],
+            queryResults:[],
             title: 'Titanic',
             yearStart: '1970',
             yearEnd: '1980',
@@ -14,6 +14,14 @@ class QueryAndResultsParent extends React.Component{
             limit:'10'
         }
     }
+
+          //grabbing data
+          componentDidMount() {
+            fetch('http://localhost:3000/')
+              .then(response => response.json())
+              .then(data => {
+                  this.setState({ queryResults: [...data] })});
+          }
 
     //changes input using value and name properties, then updates state
     onInputChange = (value, name) => {
@@ -37,9 +45,17 @@ class QueryAndResultsParent extends React.Component{
                limit: this.state.limit
             })
         })
-        //after data is sent/receieved, respond with data
+        //after data is sent, receive the response
         .then(response => response.json())
-        .then(data => console.log(data, 'query'))
+        // .then(data => console.log(data, 'query'))
+        .then(data => {
+            console.log(data)
+            this.setState({
+                queryResults:[...data],
+                title: 'new'
+            })
+        })
+        .then(console.log(this.state.queryResults, this.state.title, 'queryResults'))
         // .then(function on movieresults())
     } 
 
@@ -51,7 +67,14 @@ class QueryAndResultsParent extends React.Component{
                     title={this.state.title} 
                     onInputChange ={this.onInputChange} 
                 />
-                <MovieResults onSubmitQuery={this.onSubmitQuery} />
+                <MovieResults 
+                    queryResults ={this.state.queryResults} />
+                <div>
+                    {this.state.queryResults.map(movie =>{
+                        return movie.title
+                    })}
+
+                </div>
             </div>
         )
     }

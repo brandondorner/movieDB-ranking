@@ -23,7 +23,7 @@ const app = express();
 //parsing in json
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-//using cors
+//using cors  
 app.use(cors())
 
 app.get('/', (req, res) => {
@@ -113,10 +113,11 @@ app.post('/register', async (req, res) => {
 
 
 app.post('/query', (req, res) => {
-    res.json(req.body)
     // db.select('*').from('moviedata').limit(10)
     // .then(data => res.json(data))
 
+    db.select('*').from('moviedata').limit(15)
+    .then(data => res.json(data))
     //send back db.select req.body etc etc through data res.json(data)
 })
 
