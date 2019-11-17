@@ -49,14 +49,11 @@ class QueryAndResultsParent extends React.Component{
         .then(response => response.json())
         // .then(data => console.log(data, 'query'))
         .then(data => {
-            console.log(data)
             this.setState({
                 queryResults:[...data],
-                title: 'new'
             })
         })
-        .then(console.log(this.state.queryResults, this.state.title, 'queryResults'))
-        // .then(function on movieresults())
+        .then(console.log(this.state.queryResults, 'queryResults'))
     } 
 
     render(){
@@ -68,13 +65,9 @@ class QueryAndResultsParent extends React.Component{
                     onInputChange ={this.onInputChange} 
                 />
                 <MovieResults 
-                    queryResults ={this.state.queryResults} />
-                <div>
-                    {this.state.queryResults.map(movie =>{
-                        return movie.title
-                    })}
+                    queryResults ={this.state.queryResults} 
+                />
 
-                </div>
             </div>
         )
     }
