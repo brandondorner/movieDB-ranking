@@ -13,7 +13,7 @@ const db = knex({
       host : '127.0.0.1',
       user : 'postgres',
       //add in password
-      password : '****',
+      password : '******',
       database : 'movie'
     }
   });
@@ -46,13 +46,12 @@ app.post('/signin', (req, res) => {
     .then(data => {
         //check if passwords match
         const isValid = bcrypt.compareSync(password, data[0].hash);
-        //if passwors match then do this
+        //if passwords match then do this
         if (isValid){
             //return the user
             return db.select('*').from('users')
                 .where('email', '=', email)
                 .then(user => {
-                    // console.log(user)
                     res.json(user[0])
                 })
                 .catch(err => res.status(400).json('unable to get user'))
@@ -113,8 +112,6 @@ app.post('/register', async (req, res) => {
 
 
 app.post('/query', (req, res) => {
-    // db.select('*').from('moviedata').limit(10)
-    // .then(data => res.json(data))
     const { yearStart, yearEnd, sortBy, order, limit } = req.body
     const title = req.body.title.toUpperCase()
 

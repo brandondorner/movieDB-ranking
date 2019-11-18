@@ -6,10 +6,9 @@ class MovieResults extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-          queryResults: this.props.queryResults,
         };
       }
-     
+     //could remove state
 
     render(){
     return(
@@ -17,8 +16,6 @@ class MovieResults extends React.Component{
 
             
             {/* if no results then have some kind of no results text */}
-
-
             <table className="movie-table">
                 <tbody>
                     <tr>
@@ -29,7 +26,7 @@ class MovieResults extends React.Component{
                     </tr>
                     {this.props.queryResults.map(movie => {
                         return(
-                        <tr>
+                        <tr key={movie.movieid}>
                             <td data-th='Movie Title'>{movie.title}</td>
                             {/* For genres, replace '|' with ', ' so that it looks cleaner and text wraps */}
                             <td data-th='Genre'>{movie.genres.replace(/\|/g, ", ")}</td>

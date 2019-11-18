@@ -38,6 +38,8 @@ class SignIn extends React.Component {
         .then(user => {
             if (user.id){
                 this.props.onRouteChange('home')
+            }else{
+                alert('Wrong credentials')
             }
         })
     }
@@ -85,8 +87,14 @@ class SignIn extends React.Component {
                     <div className="lh-copy mt3">
                     <p 
                         onClick= {() => onRouteChange('register')} 
-                        className="f6 link dim black db pointer">Register</p>
+                        className="f6 link dim black db pointer">
+                        Register
+                    </p>
                     </div>
+                    <p
+                        className="f7 link black db">
+                        (Can also use credentials "test@mail.com", "password" to sign in)
+                    </p>
                 </div>
             </main>
         </article>

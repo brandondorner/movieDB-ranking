@@ -11,7 +11,7 @@ class Query extends React.Component {
     return (
         <div>
             <h1>The Movie Database </h1>
-            <h4>View and rate movies of various genres and years!</h4>
+            <h4>View and sort movies of various genres and years!</h4>
             <div className="query-box">
                 <form className='query-container' method="POST" action='/query'>
                     <input 
