@@ -12,48 +12,66 @@ class Query extends React.Component {
         <div>
             <h1>The Movie Database </h1>
             <h4>View and rate movies of various genres and years!</h4>
-            <div className="query-container">
-                <form method="POST" action='/query'>
+            <div className="query-box">
+                <form className='query-container' method="POST" action='/query'>
                     <input 
+                        className='title'
                         name="title" 
-                        placeholder="Search Title" 
-                        value = {this.props.title}
+                        placeholder="Search Title, ex: Titanic" 
+                        // value = {this.props.title}
                         onChange = {event => this.props.onInputChange(event.target.value, event.target.name)}>
                     </input>
-                    <label>Sort By:</label>
-                    <select name="sortBy" onChange = {event => this.props.onInputChange(event.target.value, event.target.name)}>
-                        <option value='none'>None</option>
-                        <option value="title">Title</option>
-                        <option value="genres">Genres</option>
-                        <option value="movie_year">Year</option>
-                        <option value='rating'>Rating</option>
-                    </select>
-                    <select name="order" onChange = {event => this.props.onInputChange(event.target.value, event.target.name)}>
-                        <option value="asc">Ascending</option>
-                        <option value='desc'>Descending</option>
-                    </select>
-                    <label> Limit results to:</label>
-                    <input 
-                        type="number" 
-                        name="limit" 
-                        value= {this.props.limit} 
-                        placeholder="25"
-                        onChange = {event => this.props.onInputChange(event.target.value, event.target.name)}/>
-                    <label>From year</label>
-                    <input 
-                        type="number" 
-                        name="yearStart" 
-                        value={this.props.yearStart}
-                        placeholder="1900"
-                        onChange = {event => this.props.onInputChange(event.target.value, event.target.name)} />
-                    <label>to year</label>
-                    <input 
-                        type="number"  
-                        name="yearEnd" 
-                        value= {this.props.yearEnd}
-                        placeholder="2018"
-                        onChange = {event => this.props.onInputChange(event.target.value, event.target.name)} />
-                    <button onClick={this.props.onSubmitQuery}>Search</button>
+                    <div className="bottom-query">
+                        <div>
+                            <label>Sort By</label>
+                            <div>
+                                <select name="sortBy" onChange = {event => this.props.onInputChange(event.target.value, event.target.name)}>
+                                    <option value='none'>None</option>
+                                    <option value="title">Title</option>
+                                    <option value="genres">Genres</option>
+                                    <option value="movie_year">Year</option>
+                                    <option value='rating'>Rating</option>
+                                </select>
+                                <select name="order" onChange = {event => this.props.onInputChange(event.target.value, event.target.name)}>
+                                    <option value="asc">Ascending</option>
+                                    <option value='desc'>Descending</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <label> Limit results to</label>
+                            <div>
+                                <input 
+                                    className='limit'
+                                    type="number" 
+                                    name="limit" 
+                                    value= {this.props.limit} 
+                                    placeholder="10"
+                                    onChange = {event => this.props.onInputChange(event.target.value, event.target.name)}/>
+                            </div>
+                        </div>
+                        <div>
+                            <label>In year range of</label>
+                            <div>
+                                <input 
+                                    className='year'
+                                    type="number" 
+                                    name="yearStart" 
+                                    value={this.props.yearStart}
+                                    placeholder="1900"
+                                    onChange = {event => this.props.onInputChange(event.target.value, event.target.name)} />
+                                <label> - </label> 
+                                <input 
+                                    className='year'
+                                    type="number"  
+                                    name="yearEnd" 
+                                    value= {this.props.yearEnd}
+                                    placeholder="2018"
+                                    onChange = {event => this.props.onInputChange(event.target.value, event.target.name)} />
+                            </div>
+                        </div>
+                        <button className='query-submit' onClick={this.props.onSubmitQuery}>Search</button>
+                    </div>
                 </form>
             </div>
         </div>

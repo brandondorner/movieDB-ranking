@@ -1,0 +1,54 @@
+h4{
+    font-family: 'PT Serif', serif;
+}
+
+#main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.bottom-query{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.query-container{
+    text-align: left;
+    width: 85vw;
+    background: #34495E;
+    color: #dd5;
+    border-radius: .4em;
+    overflow: hidden;
+    padding: 1em;
+    font-family: 'PT Serif', serif;
+
+}
+
+.title{
+    width: 100%;
+}
+
+.limit{
+    width: 50%;
+}
+
+.year{
+    width: 30%;
+}
+
+.query-submit{
+    background-color: white;
+    color: black;
+    width: 50%;
+    border:none;
+    align-self: flex-end;
+    cursor: pointer;
+    margin-top: 15px;
+}
+.query-submit:hover{
+    background-color: rgb(231, 231, 231);
+}

@@ -2,7 +2,9 @@ $breakpoint-alpha: 480px; // adjust to your needs
 
 .movie-table {
   margin: 1em 0;
-  min-width: 300px; // adjust to your needs
+  width: 85vw;
+  font-family: 'PT Serif', serif;
+
   
   tr {
     border-top: 1px solid #ddd;
@@ -82,5 +84,5 @@ $breakpoint-alpha: 480px; // adjust to your needs
   }
   th, td:before {
     color: #dd5;
-  }
+  } 
 }

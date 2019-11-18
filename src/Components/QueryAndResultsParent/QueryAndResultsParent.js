@@ -1,6 +1,7 @@
 import React from 'react';
 import Query from './Query/Query';
 import MovieResults from './MovieResults/MovieResults'
+import './css/QueryAndResultsParent.css'
 
 class QueryAndResultsParent extends React.Component{
     constructor(props){
@@ -60,7 +61,7 @@ class QueryAndResultsParent extends React.Component{
 
     render(){
         return(
-            <div>
+            <div id="main">
                 <Query 
                     onSubmitQuery={this.onSubmitQuery} 
                     title={this.state.title} 

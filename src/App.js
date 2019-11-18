@@ -74,12 +74,8 @@ class App extends React.Component {
           <Particles className='particles'
             params ={particlesParams} />
           <Navigation onRouteChange={this.onRouteChange} />
-          <div>
-            <Logo />
-            <QueryAndResultsParent />
-            {/* <Query onRouteChange={this.onRouteChange}  />
-            <MovieResults /> */}
-          </div>
+          <Logo />
+          <QueryAndResultsParent />
         </div>
       )
 

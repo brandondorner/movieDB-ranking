@@ -1,6 +1,7 @@
 .movie-table {
   margin: 1em 0;
-  min-width: 300px;
+  width: 85vw;
+  font-family: 'PT Serif', serif;
 }
 
 .movie-table tr {
