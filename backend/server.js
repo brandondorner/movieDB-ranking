@@ -13,10 +13,24 @@ const db = knex({
       host : '127.0.0.1',
       user : 'postgres',
       //add in password
-      password : '******',
+      password : '****',
       database : 'movie'
     }
   });
+
+
+  //heroku setup
+
+  const path = require('path');
+  //Static file declaration
+  app.use(express.static(path.join(__dirname, 'moviedb/build')));
+  //production mode
+  if(process.env.NODE_ENV === 'production') {  app.use(express.static(path.join(__dirname, 'moviedb/build')));
+  app.get('*', (req, res) => {    res.sendfile(path.join(__dirname = 'moviedb/build/index.html'));  })}
+  //build mode
+  app.get('*', (req, res) => {  res.sendFile(path.join(__dirname+'/moviedb/public/index.html'));})
+
+
 
 
 const app = express();
