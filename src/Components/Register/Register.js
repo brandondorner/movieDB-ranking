@@ -27,6 +27,7 @@ class Register extends React.Component{
  
     onSubmitSignIn = (event) => {
         //send info to backend
+        console.log('hi')
         fetch('https://moviedb-dorner.herokuapp.com/register', {
             //telling fetch what to send and how to send it
             method: "POST",
@@ -37,6 +38,7 @@ class Register extends React.Component{
                 name: this.state.name
             })
         })
+        .then(console.log('hi2'))
         .then(response => response.json())
         .then(user => {
             //if user exists
