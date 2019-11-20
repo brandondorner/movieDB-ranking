@@ -10,11 +10,9 @@ const PORT = process.env.PORT || 3000
 const db = knex({
     client: 'pg',
     connection: {
-      host : '127.0.0.1',
-      user : 'postgres',
-      //add in password
-      password : '****',
-      database : 'movie'
+        //heroku setup
+        connectionString: process.env.DATABASE_URL,
+        ssl: true,
     }
   });
 
