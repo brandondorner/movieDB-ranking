@@ -22,7 +22,7 @@ class SignIn extends React.Component {
 
     onSubmitSignIn = (event) => {
         //send info to backend
-        fetch('http://localhost:3000/signin', {
+        fetch('https://moviedb-dorner.herokuapp.com/signin', {
             //telling fetch what to send and how to send it
             method: "POST",
             headers: {'Content-Type': 'application/json'},

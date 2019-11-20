@@ -19,7 +19,7 @@ class QueryAndResultsParent extends React.Component{
 
           //grabbing initial table data
           componentDidMount() {
-            fetch('http://localhost:3000/')
+            fetch('https://moviedb-dorner.herokuapp.com/')
               .then(response => response.json())
               .then(data => {
                   this.setState({ queryResults: [...data] })});

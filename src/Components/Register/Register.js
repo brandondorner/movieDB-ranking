@@ -27,7 +27,7 @@ class Register extends React.Component{
  
     onSubmitSignIn = (event) => {
         //send info to backend
-        fetch('http://localhost:3000/register', {
+        fetch('https://moviedb-dorner.herokuapp.com/register', {
             //telling fetch what to send and how to send it
             method: "POST",
             headers: {'Content-Type': 'application/json'},
