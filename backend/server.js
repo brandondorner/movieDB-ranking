@@ -19,16 +19,24 @@ const db = knex({
 
   //heroku setup
 
-  const path = require('path');
-  //Static file declaration
-  app.use(express.static(path.join(__dirname, 'moviedb/build')));
-  //production mode
-  if(process.env.NODE_ENV === 'production') {  app.use(express.static(path.join(__dirname, 'moviedb/build')));
-  app.get('*', (req, res) => {    res.sendfile(path.join(__dirname = 'moviedb/build/index.html'));  })}
-  //build mode
-  app.get('*', (req, res) => {  res.sendFile(path.join(__dirname+'/moviedb/public/index.html'));})
+//   const path = require('path');
+//   //Static file declaration
+//   app.use(express.static(path.join(__dirname, 'moviedb/build')));
+//   //production mode
+//   if(process.env.NODE_ENV === 'production') {  app.use(express.static(path.join(__dirname, 'moviedb/build')));
+//   app.get('*', (req, res) => {    res.sendfile(path.join(__dirname = 'moviedb/build/index.html'));  })}
+//   //build mode
+//   app.get('*', (req, res) => {  res.sendFile(path.join(__dirname+'/moviedb/public/index.html'));})
 
 
+  //server isnt running. when done locally port 3001 sends requests and stuff to port 3000. right now with heroku we are sending requests to the front end which doesnt work
+  //need to get server running (or find where server is running) and post/get to that
+  
+
+//options
+//make two different folders to upload (would have some long wake times unless you can ping both upon start of client)(also would have to figure out all  node dependcy crap messing up again)
+//could test with local server set up
+//could have front end on my personal site (idk with react how that would work)(would also have to change code up a bunch like locations, idk actually)
 
 
 const app = express();
