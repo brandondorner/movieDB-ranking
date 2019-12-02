@@ -1,6 +1,6 @@
 A movie database where users can log in and query through a collection of movies that feature genres, ratings, release dates and more.
 
-Demo here: ([https://moviedb-dorner.herokuapp.com/])
+Demo here: https://moviedb-dorner.herokuapp.com/
 
 Future updates include users having the ability to add their own ranks can and to create lists of favorite movies.
 
